@@ -1,5 +1,5 @@
 ---
-- hosts: ec2-13-58-186-167.us-east-2.compute.amazonaws.com
+- hosts: aws
   user: tcruz
   become: true
   gather_facts: no
