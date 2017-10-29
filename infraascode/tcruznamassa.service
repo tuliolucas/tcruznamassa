@@ -2,8 +2,8 @@
 Description=Start tcruznamassa app
 
 [Service]
-User=root
-WorkingDirectory=/home/tcruz/tcruznamassa/infraascode
+User=tcruz
+WorkingDirectory=/home/vagrant/tcruznamassa/infraascode
 ExecStart=/bin/bash startup.sh
 Restart=always
 

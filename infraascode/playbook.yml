@@ -2,28 +2,27 @@
 - hosts: all
   user: tcruz
   become: true
+  gather_facts: no
   vars:
     app_name: tcruznamassa
-    repo_url: https://user:password@github.com/jfelipefilho/flask-app.git
+    repo_url: https://user:password@github.com/tuliolucas/tcruznamassa.git
     home: /home/tcruz
-
   pre_tasks:
-    - raw: sudo apt-get -y install python-simplejson
-    - action: setup
-
-    - raw: sudo apt-get -y install ruby
-    - action: setup
-
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
+    - name: 'install ruby'
+      raw: sudo apt-get -y install ruby
   tasks:
     - name: Clone app
       git: repo={{repo_url}} dest={{home}}/{{app_name}}
-
-    - name: Copy service tcruznamassa
-      copy: src={{home}}/{{app_name}}/tcruznamassa.service dest=/etc/systemd/system remote_src=true owner=root group=root
-
-    - name: Start tcruznamassa Service
+    - name: Copy service tcruznamassa init script
+      copy: src={{home}}/{{app_name}}/infraascode/tcruznamassa.service dest=/etc/systemd/system remote_src=true owner=root group=root
+    - name: Start tcruznamassa service
       systemd:
         name: tcruznamassa.service
         daemon_reload: yes
         enabled: yes
         state: started
+    - name: Reboot
+      command: reboot
+      poll: 0
