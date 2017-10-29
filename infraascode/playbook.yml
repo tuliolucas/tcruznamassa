@@ -7,9 +7,6 @@
     app_name: tcruznamassa
     repo_url: https://user:password@github.com/tuliolucas/tcruznamassa.git
     home: /home/tcruz
-  pre_tasks:
-    - name: 'install ruby'
-      raw: sudo apt-get -y install ruby
   tasks:
     - name: Clone app
       git: repo={{repo_url}} dest={{home}}/{{app_name}}
