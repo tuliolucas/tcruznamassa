@@ -1,0 +1,11 @@
+[Unit]
+Description=Start tcruznamassa app
+
+[Service]
+User=root
+WorkingDirectory=/home/tcruz/tcruznamassa/infraascode
+ExecStart=/bin/bash startup.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

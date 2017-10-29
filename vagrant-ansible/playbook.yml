@@ -1,0 +1,13 @@
+---
+- hosts: all
+    sudo: true
+        tasks:
+          - name: Copying application into /etc/ 
+              copy:
+                src: /application
+                dest: /etc/
+                owner: root
+                group: root
+
+          - name: Running startup.sh 
+              command: sh /etc/application/startup.sh
